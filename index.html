@@ -126,28 +126,51 @@
         }
         .nav-links a:hover { color: #5E4B3B; }
         .nav-links a:hover::before { width: 100%; }
-        .lang-switch {
-            display: flex;
-            gap: 4px;
-            background: rgba(94, 75, 59, 0.08);
-            padding: 4px;
-            border-radius: 60px;
-            border: 1px solid rgba(94, 75, 59, 0.2);
-        }
+        
+        /* Single Language Globe Icon - Minimalist */
         .lang-btn {
-            background: transparent;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 600;
+            background: rgba(94, 75, 59, 0.08);
+            border: 1px solid rgba(94, 75, 59, 0.2);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            font-size: 20px;
             cursor: pointer;
-            transition: all 0.3s;
-            color: #6B6A63;
+            transition: all 0.3s ease;
+            color: #5E4B3B;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
         }
-        .lang-btn.active { background: #5E4B3B; color: #E1DBC9; }
-        .lang-btn:not(.active):hover { color: #5E4B3B; background: rgba(94, 75, 59, 0.1); }
+        .lang-btn i { 
+            font-size: 20px; 
+            transition: transform 0.2s ease;
+        }
+        .lang-btn:hover { 
+            background: #5E4B3B; 
+            color: #E1DBC9;
+            transform: scale(1.05);
+            box-shadow: 0 2px 10px rgba(94,75,59,0.3);
+        }
+        .lang-btn:hover i { transform: rotate(15deg); }
 
+        /* Hamburger Menu (Mobile) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: #5E4B3B;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+        
         .hero {
             min-height: 100vh;
             display: flex;
@@ -203,6 +226,7 @@
         .photo-frame {
             position: relative;
             max-width: 340px;
+            width: 100%;
             animation: floatPhoto 6s infinite ease-in-out;
         }
         @keyframes floatPhoto { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
@@ -268,7 +292,7 @@
         }
         .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
         .edu-list { display: flex; flex-direction: column; gap: 28px; }
-        .edu-item { display: flex; gap: 20px; border-bottom: 1px solid rgba(94, 75, 59, 0.12); padding-bottom: 18px; transition: 0.3s; }
+        .edu-item { display: flex; gap: 20px; border-bottom: 1px solid rgba(94, 75, 59, 0.12); padding-bottom: 18px; transition: 0.3s; flex-wrap: wrap; }
         .edu-item:hover { transform: translateX(5px); }
         .edu-icon { font-size: 26px; color: #6B7B84; min-width: 48px; }
         .skills-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin-top: 20px; }
@@ -391,6 +415,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
         .modal-header h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: #5E4B3B; }
         .close-modal {
@@ -481,25 +506,65 @@
         .contact-btn:hover { border-color: #5E4B3B; background: white; transform: translateY(-3px); }
         footer { text-align: center; padding: 35px 0; border-top: 1px solid rgba(94, 75, 59, 0.12); color: #6B6A63; font-size: 13px; }
 
+        /* ========== RESPONSIVE DESIGN ========== */
         @media (max-width: 992px) {
             .hero .container { grid-template-columns: 1fr; text-align: center; gap: 40px; }
             .hero-text { text-align: center; }
             .hero-description { margin: 0 auto 36px; }
-            .nav-links { gap: 28px; }
         }
+        
         @media (max-width: 768px) {
             .container { padding: 0 24px; }
-            .navbar .container { flex-direction: column; }
-            .nav-links { gap: 20px; flex-wrap: wrap; justify-content: center; }
+            
+            .hamburger { display: flex; }
+            .nav-right { 
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(225, 219, 201, 0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 32px 40px;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+                z-index: 1000;
+                gap: 40px;
+            }
+            .nav-right.open { right: 0; }
+            .nav-links { flex-direction: column; gap: 32px; width: 100%; }
+            .nav-links a { font-size: 18px; }
+            
             .section { padding: 60px 0; }
+            .premium-card { padding: 28px; }
+            .premium-card h3 { font-size: 22px; }
             .business-grid { gap: 28px; }
             .business-img { height: 180px; }
+            .business-info { padding: 24px; }
+            .business-info h3 { font-size: 22px; }
             .business-gallery { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
             .gallery-item { height: 150px; }
+            .modal-header { padding: 20px 24px; }
+            .modal-header h2 { font-size: 24px; }
+            .modal-body { padding: 24px; }
+            .projects-grid { gap: 28px; }
+            .project-info { padding: 24px; }
+            .contact-btn { padding: 10px 24px; font-size: 14px; }
+            .skill-badge { padding: 8px 20px; font-size: 14px; }
         }
+        
         @media (max-width: 480px) {
             .business-img { height: 160px; }
             .gallery-item { height: 140px; }
+            .premium-card { padding: 20px; }
+            .business-gallery { grid-template-columns: 1fr; }
+            .modal-content { max-height: 90vh; }
+            .hero { padding: 120px 0 60px; }
+            .cta-elegant { padding: 12px 28px; font-size: 14px; }
+            .hero-text h1 { font-size: 40px; }
         }
     </style>
 </head>
@@ -515,19 +580,22 @@
 <nav class="navbar" id="navbar">
     <div class="container">
         <div class="logo">Shybbral Malashy</div>
-        <div class="nav-right">
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="nav-right" id="navRight">
             <ul class="nav-links">
-                <li><a href="#home">Beranda</a></li>
-                <li><a href="#about">Tentang</a></li>
-                <li><a href="#skills">Keahlian</a></li>
-                <li><a href="#business">Bisnis</a></li>
-                <li><a href="#projects">Proyek</a></li>
-                <li><a href="#contact">Kontak</a></li>
+                <li><a href="#home" data-key="navHome">Beranda</a></li>
+                <li><a href="#about" data-key="navAbout">Tentang</a></li>
+                <li><a href="#skills" data-key="navSkills">Keahlian</a></li>
+                <li><a href="#business" data-key="navBusiness">Bisnis</a></li>
+                <li><a href="#projects" data-key="navProject">Proyek</a></li>
+                <li><a href="#contact" data-key="navContact">Kontak</a></li>
             </ul>
-            <div class="lang-switch">
-                <button class="lang-btn active" id="langID">ID</button>
-                <button class="lang-btn" id="langEN">EN</button>
-            </div>
+            <!-- Single Globe Icon for Language Toggle -->
+            <button class="lang-btn" id="langToggle">
+                <i class="fas fa-globe"></i>
+            </button>
         </div>
     </div>
 </nav>
@@ -535,10 +603,10 @@
 <section id="home" class="hero">
     <div class="container">
         <div class="hero-text" data-aos="fade-right">
-            <div class="premium-badge">DIGITAL IDENTITY</div>
+            <div class="premium-badge" data-key="heroBadge">DIGITAL IDENTITY</div>
             <h1>Shybbral <span>Malashy</span></h1>
-            <div class="hero-description">Menggabungkan teknologi, bisnis, dan gaya hidup modern ke dalam identitas digital yang lebih bermakna.</div>
-            <a href="#contact" class="cta-elegant">Hubungi Saya <i class="fas fa-arrow-right"></i></a>
+            <div class="hero-description" data-key="heroDescription">Menggabungkan teknologi, bisnis, dan gaya hidup modern ke dalam identitas digital yang lebih bermakna.</div>
+            <a href="#contact" class="cta-elegant" data-key="ctaText">Hubungi Saya <i class="fas fa-arrow-right"></i></a>
         </div>
         <div class="hero-photo" data-aos="fade-left">
             <div class="photo-frame">
@@ -550,23 +618,23 @@
 
 <section id="about" class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up"><span>Tentang & Perjalanan</span></div>
+        <div class="section-title" data-aos="fade-up"><span data-key="aboutTitle">Tentang & Perjalanan</span></div>
         <div class="grid-2">
             <div class="premium-card" data-aos="fade-right">
                 <div class="card-icon"><i class="fas fa-feather-alt"></i></div>
-                <h3>Tentang Saya</h3>
-                <p>Saya Shybbral Malashy, mahasiswa S1 Teknik Informatika di Universitas Jabal Ghafur. Saya memiliki minat kuat di bidang bisnis, perdagangan, dan teknologi digital.</p>
-                <p style="margin-top: 16px;">Sebagai seorang entrepreneur muda, saya aktif mengembangkan keterampilan berdagang, basic komputer, serta pemanfaatan internet untuk peluang usaha.</p>
-                <p style="margin-top: 16px;">Visi saya adalah menggabungkan solusi teknologi dengan kebutuhan pasar lokal, menciptakan dampak nyata bagi masyarakat Aceh.</p>
+                <h3 data-key="aboutMeTitle">Tentang Saya</h3>
+                <p data-key="aboutText1">Saya Shybbral Malashy, mahasiswa S1 Teknik Informatika di Universitas Jabal Ghafur. Saya memiliki minat kuat di bidang bisnis, perdagangan, dan teknologi digital.</p>
+                <p style="margin-top: 16px;" data-key="aboutText2">Sebagai seorang entrepreneur muda, saya aktif mengembangkan keterampilan berdagang, basic komputer, serta pemanfaatan internet untuk peluang usaha.</p>
+                <p style="margin-top: 16px;" data-key="aboutText3">Visi saya adalah menggabungkan solusi teknologi dengan kebutuhan pasar lokal, menciptakan dampak nyata bagi masyarakat Aceh.</p>
             </div>
             <div class="premium-card" data-aos="fade-left">
                 <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                <h3>Perjalanan Pendidikan</h3>
+                <h3 data-key="eduTitle">Perjalanan Pendidikan</h3>
                 <div class="edu-list">
                     <div class="edu-item"><div class="edu-icon"><i class="fas fa-school"></i></div><div class="edu-detail"><strong>SD Gle Ceurih</strong><div class="edu-year">2012 - 2018</div></div></div>
                     <div class="edu-item"><div class="edu-icon"><i class="fas fa-chalkboard-user"></i></div><div class="edu-detail"><strong>SMPU Iqro' Sigli</strong><div class="edu-year">2018 - 2021</div></div></div>
                     <div class="edu-item"><div class="edu-icon"><i class="fas fa-book-open"></i></div><div class="edu-detail"><strong>SMAIT Al Uswah</strong><div class="edu-year">2021 - 2024</div></div></div>
-                    <div class="edu-item"><div class="edu-icon"><i class="fas fa-university"></i></div><div class="edu-detail"><strong>Universitas Jabal Ghafur</strong><div class="edu-year">2024 - Sekarang</div><div class="edu-major">Teknik Informatika - Semester 4</div></div></div>
+                    <div class="edu-item"><div class="edu-icon"><i class="fas fa-university"></i></div><div class="edu-detail"><strong>Universitas Jabal Ghafur</strong><div class="edu-year">2024 - Sekarang</div><div class="edu-major" data-key="uniDesc">Teknik Informatika - Semester 4</div></div></div>
                 </div>
             </div>
         </div>
@@ -575,47 +643,45 @@
 
 <section id="skills" class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up"><span>Keahlian Utama</span></div>
+        <div class="section-title" data-aos="fade-up"><span data-key="skillsTitle">Keahlian Utama</span></div>
         <div class="skills-container" data-aos="fade-up">
-            <div class="skill-badge"><i class="fas fa-laptop-code"></i> <span>Basic Komputer</span></div>
-            <div class="skill-badge"><i class="fas fa-futbol"></i> <span>Main Bola</span></div>
-            <div class="skill-badge"><i class="fas fa-handshake"></i> <span>Berdagang</span></div>
-            <div class="skill-badge"><i class="fas fa-globe"></i> <span>Keterampilan Internet</span></div>
+            <div class="skill-badge"><i class="fas fa-laptop-code"></i> <span data-key="skill1">Basic Komputer</span></div>
+            <div class="skill-badge"><i class="fas fa-futbol"></i> <span data-key="skill2">Main Bola</span></div>
+            <div class="skill-badge"><i class="fas fa-handshake"></i> <span data-key="skill3">Berdagang</span></div>
+            <div class="skill-badge"><i class="fas fa-globe"></i> <span data-key="skill4">Keterampilan Internet</span></div>
         </div>
     </div>
 </section>
 
 <section id="business" class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up"><span>Business Showcase</span></div>
+        <div class="section-title" data-aos="fade-up"><span data-key="businessTitle">Business Showcase</span></div>
         <div style="text-align: center; margin-bottom: 48px; color: #6B6A63; max-width: 600px; margin-left: auto; margin-right: auto;" data-aos="fade-up">
-            <p>Ruang yang menampilkan usaha milik keluarga yang saya ikut kelola dan kembangkan secara aktif.</p>
+            <p data-key="businessDesc">Ruang yang menampilkan usaha milik keluarga yang saya ikut kelola dan kembangkan secara aktif.</p>
         </div>
         <div class="business-grid" data-aos="fade-up" data-aos-delay="100">
             <div class="business-card" data-business="cekmin">
                 <div class="business-img">
-                    <img src="cekmin.jpg.jpeg" alt="CEKMIN KUPI SIGLI Banner" class="business-logo" 
-                         onerror="this.src='https://placehold.co/600x400/E1DBC9/5E4B3B?text=CEKMIN+KUPI'">
+                    <img src="cekmin.jpg.jpeg" alt="CEKMIN KUPI SIGLI Banner" class="business-logo" onerror="this.src='https://placehold.co/600x400/E1DBC9/5E4B3B?text=CEKMIN+KUPI'">
                 </div>
                 <div class="business-info">
                     <h3>CEKMIN KUPI SIGLI</h3>
                     <div class="business-category">Warung Kopi</div>
                     <p class="business-desc">Warung kopi dengan suasana hangat dan cita rasa khas yang terus dijaga.</p>
                     <div class="business-status"><i class="fas fa-circle"></i> Active</div>
-                    <button class="detail-btn">Lihat Detail <i class="fas fa-arrow-right"></i></button>
+                    <button class="detail-btn" data-key="detailBtn">Lihat Detail <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             <div class="business-card" data-business="simas">
                 <div class="business-img">
-                    <img src="simas.jpg.jpeg" alt="SIMAS BAKERY Banner" class="business-logo"
-                         onerror="this.src='https://placehold.co/600x400/E1DBC9/5E4B3B?text=SIMAS+BAKERY'">
+                    <img src="simas.jpg.jpeg" alt="SIMAS BAKERY Banner" class="business-logo" onerror="this.src='https://placehold.co/600x400/E1DBC9/5E4B3B?text=SIMAS+BAKERY'">
                 </div>
                 <div class="business-info">
                     <h3>SIMAS BAKERY</h3>
                     <div class="business-category">Bakery</div>
                     <p class="business-desc">Usaha bakery yang menghadirkan berbagai pilihan roti dan kue untuk kebutuhan harian.</p>
                     <div class="business-status"><i class="fas fa-circle"></i> Active</div>
-                    <button class="detail-btn">Lihat Detail <i class="fas fa-arrow-right"></i></button>
+                    <button class="detail-btn" data-key="detailBtn">Lihat Detail <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>
@@ -624,22 +690,22 @@
 
 <section id="projects" class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up"><span>Proyek Unggulan</span></div>
+        <div class="section-title" data-aos="fade-up"><span data-key="projectTitle">Proyek Unggulan</span></div>
         <div class="projects-grid">
             <div class="project-card" data-aos="zoom-in">
                 <div class="project-img"><i class="fas fa-motorcycle"></i></div>
                 <div class="project-info">
                     <h3>Gaskeun 🚀</h3>
-                    <p>Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat.</p>
-                    <a href="https://malashyshybbral-eng.github.io/gaskeunn/" target="_blank" class="project-link">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
+                    <p data-key="projectDesc">Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat.</p>
+                    <a href="https://malashyshybbral-eng.github.io/gaskeunn/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
             <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-img"><i class="fas fa-book-open"></i></div>
                 <div class="project-info">
                     <h3>Perpustakaan Digital 📚</h3>
-                    <p>Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.</p>
-                    <a href="https://malashyshybbral-eng.github.io/perpustakaan/" target="_blank" class="project-link">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
+                    <p data-key="libraryDesc">Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.</p>
+                    <a href="https://malashyshybbral-eng.github.io/perpustakaan/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -648,7 +714,7 @@
 
 <section id="contact" class="section">
     <div class="container">
-        <div class="section-title" data-aos="fade-up"><span>Hubungi Saya</span></div>
+        <div class="section-title" data-aos="fade-up"><span data-key="contactTitle">Hubungi Saya</span></div>
         <div class="contact-group" data-aos="fade-up">
             <a href="https://www.instagram.com/shybbralmalashy" target="_blank" class="contact-btn"><i class="fab fa-instagram"></i> Instagram</a>
             <a href="https://wa.me/6281260274589" target="_blank" class="contact-btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
@@ -682,22 +748,32 @@
 <script>
     AOS.init({ duration: 800, once: false, offset: 50, mirror: true });
 
+    // Navbar scroll effect
     window.addEventListener('scroll', () => {
         const navbar = document.getElementById('navbar');
         if (window.scrollY > 50) navbar.classList.add('scrolled');
         else navbar.classList.remove('scrolled');
     });
 
+    // Smooth scroll & close mobile menu on click
     document.querySelectorAll('.nav-links a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
             const target = document.getElementById(targetId);
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            document.getElementById('navRight').classList.remove('open');
         });
     });
 
-    // Data bisnis dengan 6 foto untuk setiap card
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navRight = document.getElementById('navRight');
+    hamburger.addEventListener('click', () => {
+        navRight.classList.toggle('open');
+    });
+
+    // Business Data
     const businessData = {
         cekmin: {
             name: "CEKMIN KUPI SIGLI",
@@ -708,15 +784,7 @@
             tiktok: "https://www.tiktok.com/@cekminkupi.sigli?_r=1&_t=ZS-95wHjC32uFp",
             whatsapp: null,
             status: "Active",
-            // 6 FOTO UNTUK CEKMIN KUPI SIGLI
-            gallery: [
-                "cekmin1.jpg.jpeg",
-                "cekmin2.jpg.jpeg",
-                "cekmin3.jpg.jpeg",
-                "cekmin4.jpg.jpeg",
-                "cekmin5.jpg.jpeg",
-                "cekmin6.jpg.jpeg"
-            ]
+            gallery: ["cekmin1.jpg.jpeg","cekmin2.jpg.jpeg","cekmin3.jpg.jpeg","cekmin4.jpg.jpeg","cekmin5.jpg.jpeg","cekmin6.jpg.jpeg"]
         },
         simas: {
             name: "SIMAS BAKERY",
@@ -727,15 +795,7 @@
             tiktok: null,
             whatsapp: "https://wa.me/6281260274589",
             status: "Active",
-            // 6 FOTO UNTUK SIMAS BAKERY
-            gallery: [
-                "simas1.jpg.jpeg",
-                "simas2.jpg.jpeg",
-                "simas3.jpg.jpeg",
-                "simas4.jpg.jpeg",
-                "simas5.jpg.jpeg",
-                "simas6.jpg.jpeg",
-            ]
+            gallery: ["simas1.jpg.jpeg","simas2.jpg.jpeg","simas3.jpg.jpeg","simas4.jpg.jpeg","simas5.jpg.jpeg","simas6.jpg.jpeg"]
         }
     };
 
@@ -749,26 +809,17 @@
     function openBusinessModal(businessKey) {
         const biz = businessData[businessKey];
         if (!biz) return;
-
         modalTitle.textContent = biz.name;
-        
-        // Clear gallery
         modalGallery.innerHTML = '';
-        
-        // Loop untuk membuat 6 gallery images
         for (let i = 0; i < biz.gallery.length; i++) {
             const imgPath = biz.gallery[i];
-            
             const galleryItem = document.createElement('div');
             galleryItem.className = 'gallery-item';
-            
             const img = document.createElement('img');
             img.className = 'gallery-image';
             img.src = imgPath;
             img.alt = `${biz.name} - Foto ${i + 1}`;
-            
             img.onerror = function() {
-                console.warn(`Gambar tidak ditemukan: ${imgPath}`);
                 this.style.display = 'none';
                 this.parentElement.style.background = '#D4CDBB';
                 this.parentElement.style.display = 'flex';
@@ -776,40 +827,20 @@
                 this.parentElement.style.justifyContent = 'center';
                 this.parentElement.innerHTML = `<i class="fas fa-image" style="font-size: 48px; color: #5E4B3B;"></i>`;
             };
-            
-            img.onload = function() {
-                console.log(`Gambar berhasil dimuat: ${imgPath}`);
-            };
-            
             galleryItem.appendChild(img);
             modalGallery.appendChild(galleryItem);
         }
-        
-        // Set deskripsi dan meta info
         modalDesc.innerHTML = biz.fullDesc;
         modalMeta.innerHTML = `
             <div class="meta-item"><i class="fas fa-tag"></i> <span>${biz.category}</span></div>
             <div class="meta-item"><i class="fas fa-circle" style="color: #2D4530; font-size: 10px;"></i> <span>${biz.status}</span></div>
             <div class="meta-item"><i class="fas fa-map-marker-alt"></i> <span>${biz.location}</span></div>
         `;
-        
-        // Set social links
         let socialHtml = '';
-        
-        if (biz.instagram) {
-            socialHtml += `<a href="${biz.instagram}" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>`;
-        }
-        
-        if (biz.tiktok) {
-            socialHtml += `<a href="${biz.tiktok}" target="_blank" class="social-link"><i class="fab fa-tiktok"></i> TikTok</a>`;
-        }
-        
-        if (biz.whatsapp) {
-            socialHtml += `<a href="${biz.whatsapp}" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;
-        }
-        
+        if (biz.instagram) socialHtml += `<a href="${biz.instagram}" target="_blank" class="social-link"><i class="fab fa-instagram"></i> Instagram</a>`;
+        if (biz.tiktok) socialHtml += `<a href="${biz.tiktok}" target="_blank" class="social-link"><i class="fab fa-tiktok"></i> TikTok</a>`;
+        if (biz.whatsapp) socialHtml += `<a href="${biz.whatsapp}" target="_blank" class="social-link"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;
         modalSocial.innerHTML = socialHtml;
-        
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
@@ -822,53 +853,43 @@
     document.querySelectorAll('.business-card').forEach(card => {
         const btn = card.querySelector('.detail-btn');
         const business = card.getAttribute('data-business');
-        
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            openBusinessModal(business);
-        });
-        
-        card.addEventListener('click', (e) => {
-            if (e.target === btn || btn.contains(e.target)) return;
-            openBusinessModal(business);
-        });
+        btn.addEventListener('click', (e) => { e.stopPropagation(); openBusinessModal(business); });
+        card.addEventListener('click', (e) => { if (e.target === btn || btn.contains(e.target)) return; openBusinessModal(business); });
     });
 
     document.querySelector('.close-modal').addEventListener('click', closeModal);
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) closeModal();
-    });
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-    // Multi Language
+    // ========== SINGLE GLOBE ICON LANGUAGE TOGGLE ==========
     const translations = {
         id: {
-            navHome: "Beranda", navAbout: "Tentang", navSkills: "Keahlian", navProject: "Proyek", navContact: "Kontak",
+            navHome: "Beranda", navAbout: "Tentang", navSkills: "Keahlian", navBusiness: "Bisnis", navProject: "Proyek", navContact: "Kontak",
             heroBadge: "DIGITAL IDENTITY",
             heroDescription: "Menggabungkan teknologi, bisnis, dan gaya hidup modern ke dalam identitas digital yang lebih bermakna.",
-            ctaText: "Hubungi Saya",
-            aboutTitle: "Tentang & Perjalanan", aboutMeTitle: "Tentang Saya",
+            ctaText: "Hubungi Saya", aboutTitle: "Tentang & Perjalanan", aboutMeTitle: "Tentang Saya",
             aboutText1: "Saya Shybbral Malashy, mahasiswa S1 Teknik Informatika di Universitas Jabal Ghafur. Saya memiliki minat kuat di bidang bisnis, perdagangan, dan teknologi digital.",
-            aboutText2: "Sebagai seorang entrepreneur muda, saya aktif mengembangkan keterampilan berdagang, basic komputer, serta pemanfaatan internet untuk peluang usaha. Saya juga memiliki hobi sepak bola yang membentuk disiplin dan kerja sama tim.",
+            aboutText2: "Sebagai seorang entrepreneur muda, saya aktif mengembangkan keterampilan berdagang, basic komputer, serta pemanfaatan internet untuk peluang usaha.",
             aboutText3: "Visi saya adalah menggabungkan solusi teknologi dengan kebutuhan pasar lokal, menciptakan dampak nyata bagi masyarakat Aceh.",
             eduTitle: "Perjalanan Pendidikan", uniDesc: "Teknik Informatika - Semester 4",
             skillsTitle: "Keahlian Utama", skill1: "Basic Komputer", skill2: "Main Bola", skill3: "Berdagang", skill4: "Keterampilan Internet",
-            projectTitle: "Proyek Unggulan", projectDesc: "Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat. Simulasi pemesanan kendaraan dan makanan.",
-            libraryDesc: "Sistem manajemen perpustakaan modern dengan fitur pencarian, peminjaman, dan katalog buku digital. Akses mudah kapan saja.",
+            businessTitle: "Business Showcase", businessDesc: "Ruang yang menampilkan usaha milik keluarga yang saya ikut kelola dan kembangkan secara aktif.",
+            detailBtn: "Lihat Detail", projectTitle: "Proyek Unggulan", projectDesc: "Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat.",
+            libraryDesc: "Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.",
             viewProject: "Lihat Proyek", contactTitle: "Hubungi Saya"
         },
         en: {
-            navHome: "Home", navAbout: "About", navSkills: "Skills", navProject: "Projects", navContact: "Contact",
+            navHome: "Home", navAbout: "About", navSkills: "Skills", navBusiness: "Business", navProject: "Projects", navContact: "Contact",
             heroBadge: "DIGITAL IDENTITY",
             heroDescription: "Combining technology, business, and modern lifestyle into a more meaningful digital identity.",
-            ctaText: "Contact Me",
-            aboutTitle: "About & Journey", aboutMeTitle: "About Me",
+            ctaText: "Contact Me", aboutTitle: "About & Journey", aboutMeTitle: "About Me",
             aboutText1: "I'm Shybbral Malashy, an Informatics Engineering student at Jabal Ghafur University. I have strong interests in business, trading, and digital technology.",
-            aboutText2: "As a young entrepreneur, I actively develop trading skills, computer basics, and internet utilization for business opportunities. Football is my hobby that builds discipline and teamwork.",
+            aboutText2: "As a young entrepreneur, I actively develop trading skills, computer basics, and internet utilization for business opportunities.",
             aboutText3: "My vision is to combine technology solutions with local market needs, creating real impact for Aceh's community.",
             eduTitle: "Education Journey", uniDesc: "Informatics Engineering - 4th Semester",
             skillsTitle: "Core Skills", skill1: "Basic Computer", skill2: "Football", skill3: "Trading", skill4: "Internet Skills",
-            projectTitle: "Featured Projects", projectDesc: "Transportation & food delivery platform for Aceh. Fast, safe, delicious. Vehicle & food ordering simulation.",
-            libraryDesc: "Modern library management system with search features, borrowing, and digital book catalog. Easy access anytime.",
+            businessTitle: "Business Showcase", businessDesc: "A showcase of family businesses that I actively manage and develop.",
+            detailBtn: "View Details", projectTitle: "Featured Projects", projectDesc: "Transportation & food delivery platform for Aceh. Fast, safe, delicious.",
+            libraryDesc: "Modern library management system with search features, borrowing, and digital book catalog.",
             viewProject: "View Project", contactTitle: "Contact Me"
         }
     };
@@ -878,13 +899,28 @@
         currentLang = lang;
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
-            if (translations[lang][key]) el.innerText = translations[lang][key];
+            if (translations[lang][key]) {
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = translations[lang][key];
+                else el.innerText = translations[lang][key];
+            }
         });
-        document.getElementById('langID').classList.toggle('active', lang === 'id');
-        document.getElementById('langEN').classList.toggle('active', lang === 'en');
+        // Update tooltip on globe icon (optional, shows current language on hover)
+        const langBtn = document.getElementById('langToggle');
+        if (langBtn) {
+            langBtn.setAttribute('title', currentLang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia');
+        }
     }
-    document.getElementById('langID').addEventListener('click', () => setLanguage('id'));
-    document.getElementById('langEN').addEventListener('click', () => setLanguage('en'));
+    
+    // Toggle between ID and EN
+    function toggleLanguage() {
+        const newLang = currentLang === 'id' ? 'en' : 'id';
+        setLanguage(newLang);
+    }
+    
+    const langToggle = document.getElementById('langToggle');
+    langToggle.addEventListener('click', toggleLanguage);
+    
+    // Initialize with Indonesian
     setLanguage('id');
 </script>
 </body>
