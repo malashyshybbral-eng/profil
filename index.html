@@ -466,20 +466,24 @@
         }
         .social-link:hover { background: #5E4B3B; color: #E1DBC9; transform: translateY(-2px); }
 
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
         .project-card {
             background: #EAE5D8;
             border-radius: 28px;
             overflow: hidden;
             transition: all 0.4s;
             border: 1px solid rgba(94, 75, 59, 0.08);
+            display: flex;
+            flex-direction: column;
         }
         .project-card:hover { transform: translateY(-8px); border-color: rgba(94, 75, 59, 0.25); }
         .project-img { height: 210px; background: linear-gradient(135deg, #D4CDBB, #EAE5D8); display: flex; align-items: center; justify-content: center; font-size: 64px; color: #5E4B3B; }
-        .project-info { padding: 32px; text-align: center; }
+        .project-info { padding: 32px; text-align: center; flex: 1; display: flex; flex-direction: column; }
+        .project-info p { margin-bottom: 24px; flex-grow: 1; }
         .project-link {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 10px;
             border: 1px solid #6B7B84;
             padding: 10px 26px;
@@ -488,6 +492,8 @@
             color: #5E4B3B;
             font-weight: 600;
             transition: 0.3s;
+            margin-top: auto;
+            align-self: center;
         }
         .project-link:hover { background: #5E4B3B; color: #E1DBC9; gap: 14px; }
         .contact-group { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
@@ -543,7 +549,6 @@
             .premium-card { padding: 28px; }
             .premium-card h3 { font-size: 22px; }
             .business-grid { gap: 28px; }
-            /* BUSINESS IMG tetap menggunakan aspect-ratio yang sama seperti desktop */
             .business-img {
                 aspect-ratio: 16 / 9;
             }
@@ -709,6 +714,15 @@
                     <h3>Perpustakaan Digital 📚</h3>
                     <p data-key="libraryDesc">Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.</p>
                     <a href="https://malashyshybbral-eng.github.io/perpustakaan/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <!-- PROJECT BARU: PROMOSI PRODUK -->
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+                <div class="project-img"><i class="fas fa-chart-line"></i></div>
+                <div class="project-info">
+                    <h3>Promosi Produk 📈</h3>
+                    <p data-key="promoDesc">Landing page promosi produk modern & responsif untuk meningkatkan brand awareness.</p>
+                    <a href="https://malashyshybbral-eng.github.io/promosi-produk/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -878,6 +892,7 @@
             businessTitle: "Business Showcase", businessDesc: "Ruang yang menampilkan usaha milik keluarga yang saya ikut kelola dan kembangkan secara aktif.",
             detailBtn: "Lihat Detail", projectTitle: "Proyek Saya", projectDesc: "Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat.",
             libraryDesc: "Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.",
+            promoDesc: "Landing page promosi produk modern & responsif untuk meningkatkan brand awareness.",
             viewProject: "Lihat Proyek", contactTitle: "Hubungi Saya"
         },
         en: {
@@ -893,6 +908,7 @@
             businessTitle: "Business Showcase", businessDesc: "A showcase of family businesses that I actively manage and develop.",
             detailBtn: "View Details", projectTitle: "My Projects", projectDesc: "Transportation & food delivery platform for Aceh. Fast, safe, delicious.",
             libraryDesc: "Modern library management system with search features, borrowing, and digital book catalog.",
+            promoDesc: "Modern & responsive product promotion landing page to boost brand awareness.",
             viewProject: "View Project", contactTitle: "Contact Me"
         }
     };
