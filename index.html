@@ -479,7 +479,13 @@
         .project-card:hover { transform: translateY(-8px); border-color: rgba(94, 75, 59, 0.25); }
         .project-img { height: 210px; background: linear-gradient(135deg, #D4CDBB, #EAE5D8); display: flex; align-items: center; justify-content: center; font-size: 64px; color: #5E4B3B; }
         .project-info { padding: 32px; text-align: center; flex: 1; display: flex; flex-direction: column; }
-        .project-info p { margin-bottom: 24px; flex-grow: 1; }
+        .project-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #5E4B3B;
+            margin-bottom: 12px;
+        }
+        .project-info p { margin-bottom: 24px; flex-grow: 1; color: #6B6A63; }
         .project-link {
             display: inline-flex;
             align-items: center;
@@ -716,13 +722,25 @@
                     <a href="https://malashyshybbral-eng.github.io/perpustakaan/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-            <!-- PROJECT BARU: PROMOSI PRODUK -->
             <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
                 <div class="project-img"><i class="fas fa-chart-line"></i></div>
                 <div class="project-info">
                     <h3>Promosi Produk 📈</h3>
                     <p data-key="promoDesc">Landing page promosi produk modern & responsif untuk meningkatkan brand awareness.</p>
                     <a href="https://malashyshybbral-eng.github.io/promosi-produk/" target="_blank" class="project-link" data-key="viewProject">Lihat Proyek <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <!-- PROJECT BARU: AI WEB -->
+            <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+                <div class="project-img">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-info">
+                    <h3>AI Assistant 🤖</h3>
+                    <p data-key="aiProjectDesc">Mengembangkan website AI Assistant berbasis web yang dapat membantu pengguna melalui antarmuka yang modern, cepat, dan responsif.</p>
+                    <a href="https://infinityfree.synergize.co/" target="_blank" class="project-link" data-key="viewProject">
+                        Lihat Proyek <i class="fas fa-external-link-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -893,6 +911,7 @@
             detailBtn: "Lihat Detail", projectTitle: "Proyek Saya", projectDesc: "Platform transportasi & food delivery se-Aceh. Cepat, aman, lezat.",
             libraryDesc: "Sistem manajemen perpustakaan modern dengan fitur pencarian dan peminjaman.",
             promoDesc: "Landing page promosi produk modern & responsif untuk meningkatkan brand awareness.",
+            aiProjectDesc: "Mengembangkan website AI Assistant berbasis web yang dapat membantu pengguna melalui antarmuka yang modern, cepat, dan responsif.",
             viewProject: "Lihat Proyek", contactTitle: "Hubungi Saya"
         },
         en: {
@@ -909,6 +928,7 @@
             detailBtn: "View Details", projectTitle: "My Projects", projectDesc: "Transportation & food delivery platform for Aceh. Fast, safe, delicious.",
             libraryDesc: "Modern library management system with search features, borrowing, and digital book catalog.",
             promoDesc: "Modern & responsive product promotion landing page to boost brand awareness.",
+            aiProjectDesc: "Developing a web-based AI Assistant website that helps users through a modern, fast, and responsive interface.",
             viewProject: "View Project", contactTitle: "Contact Me"
         }
     };
